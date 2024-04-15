@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kunstprojekt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+        }
+        .gallery {
+            width: 90vw;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            flex: 0 0 100%;
+            max-width: 100%;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: none;
+        }
+        .gallery-item.active {
+            display: block;
+        }
+        .gallery-item img, .gallery-item video {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            font-size: 24px;
+            user-select: none;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .title {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kunstprojekt</h1>
+        <div class="gallery">
+            <div class="gallery-item active">
+                <img src="png1.png" alt="Bild 1">
+            </div>
+            <div class="gallery-item">
+                <img src="png2.png" alt="Bild 2">
+            </div>
+            <div class="gallery-item">
+                <video controls>
+                    <source src="video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="title">Eigener Schmuck in Forme eines Mond Anhängers</div>
+    </div>
+
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("gallery-item");
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");  
+            }
+            slides[slideIndex-1].classList.add("active");  
+        }
+    </script>
+</body>
+</html>
